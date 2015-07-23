@@ -5,6 +5,7 @@ module Phase6
     # use this with the router to call action_name (:index, :show, :create...)
     def invoke_action(name)
     	self.send(name)
+    	render(name.to_sym) unless already_built_response?
     end
   end
 end

@@ -2,7 +2,7 @@ require 'active_support'
 require 'active_support/core_ext'
 require 'webrick'
 require_relative '../lib/phase5/controller_base'
-
+require_relative '../lib/bonus/csrf'
 # http://www.ruby-doc.org/stdlib-2.0/libdoc/webrick/rdoc/WEBrick.html
 # http://www.ruby-doc.org/stdlib-2.0/libdoc/webrick/rdoc/WEBrick/HTTPRequest.html
 # http://www.ruby-doc.org/stdlib-2.0/libdoc/webrick/rdoc/WEBrick/HTTPResponse.html
@@ -59,7 +59,9 @@ server.mount_proc('/') do |req, res|
   when ['GET', '/cats']
     CatsController.new(req, res, {}).index
   when ['POST', '/cats']
-    CatsController.new(req, res, {}).create
+    controller = CatsController.new(req, res, {})
+    # controller.verify_token
+    controller.create
   when ['GET', '/cats/new']
     CatsController.new(req, res, {}).new
   end

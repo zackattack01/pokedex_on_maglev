@@ -1,1 +1,12 @@
 <%= session["count"] %>
+	<li><%= flash[:count] if flash[:count] %></li>	
+		<ul>
+		<% if flash[:num_vals] %>
+			<% flash[:num_vals].each do |val| %>
+				<li><%= val %></li>
+			<% end %>
+			<% if flash[:error] %>
+				<li><%= flash[:error] %></li>	
+			<% end %>
+		</ul>
+	<% end %>
