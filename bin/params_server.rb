@@ -1,12 +1,7 @@
 require 'active_support'
 require 'active_support/core_ext'
 require 'webrick'
-require_relative '../lib/phase5/controller_base'
-require_relative '../lib/bonus/csrf'
-# http://www.ruby-doc.org/stdlib-2.0/libdoc/webrick/rdoc/WEBrick.html
-# http://www.ruby-doc.org/stdlib-2.0/libdoc/webrick/rdoc/WEBrick/HTTPRequest.html
-# http://www.ruby-doc.org/stdlib-2.0/libdoc/webrick/rdoc/WEBrick/HTTPResponse.html
-# http://www.ruby-doc.org/stdlib-2.0/libdoc/webrick/rdoc/WEBrick/Cookie.html
+require_relative '../lib/controller_base'
 
 class Cat
   attr_reader :name, :owner
@@ -32,7 +27,7 @@ class Cat
   end
 end
 
-class CatsController < Phase5::ControllerBase
+class CatsController < ControllerBase
   def create
     @cat = Cat.new(params["cat"])
     if @cat.save
@@ -60,7 +55,6 @@ server.mount_proc('/') do |req, res|
     CatsController.new(req, res, {}).index
   when ['POST', '/cats']
     controller = CatsController.new(req, res, {})
-    # controller.verify_token
     controller.create
   when ['GET', '/cats/new']
     CatsController.new(req, res, {}).new
