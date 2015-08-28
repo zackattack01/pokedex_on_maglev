@@ -22,14 +22,6 @@ class Type < SQLObject
   finalize!
 end
 
-class PokePic < SQLObject
-  self.table_name = 'pokepics'
-
-  belongs_to :pokemon
-
-  finalize!
-end
-
 class PokemonsController < ControllerBase
   def index
     @pokemons = Pokemon.all

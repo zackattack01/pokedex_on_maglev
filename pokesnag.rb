@@ -5,7 +5,7 @@ info = body.scan(/\>(\w+|\#\d+)\</).flatten[13..-1].join(' ').split("\#")[1..-1]
 File.open('./pokemon.sql', 'w') do |f|
   f.puts "INSERT INTO\n\tpokemons (id, name, image_url)\nVALUES"
   info.map {|d| d[0..1] }.each do |pokeid, pokename|
-    f.puts "\t(#{pokeid.to_i}, \"#{pokename}\", \"\/pokeimages\/#{pokeid}.png\"),"
+    f.puts "\t(#{pokeid.to_i}, \"#{pokename}\", \"#{[File.read('./images/' + pokeid + '.png')].pack('m0')}\"),"
   end
 
   f.puts "INSERT INTO\n\ttypes (id, name, pokemon_id)\nVALUES"

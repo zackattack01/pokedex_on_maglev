@@ -4,14 +4,42 @@ body {
   color: white;
   font-family: 'Monaco' monospace;
 }
-</style>
 
-<h1>POKEMON</h1>
-<ul>
+.title {
+  background-color: red;
+  padding: 15px;
+  margin: 0;
+  border: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+/*.title:before {
+  content: "";
+  display: block;
+  clear: both;
+}*/
+
+h1, h2, h3 {
+  text-align: center;
+}
+
+h3:nth-of-type(1) { margin-top: 150px; }
+
+img {
+  margin-left: 50%;
+  transform: translate(-50%);
+}
+
+
+</style>
+<div class="title">
+  <h1>POKEMON</h1>
+</div>
   <% @pokemons.each do |poke| %>
-  <li>  
     <h3><%= poke.name %></h3>
-    <!-- <img src="/images/<%= poke.image_url %>" alt="<%= poke.name %>-image"> -->
-  </li>
+    <img alt="<%= poke.name %>-image" src="data:image/png;base64,<%= poke.encoded_img %>"/>
   <% end %>
-</ul>
