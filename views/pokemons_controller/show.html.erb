@@ -1,8 +1,13 @@
+<style>
+  body {
+    background-color: black;
+
+  }
+
+</style>
+
 <h1><%= @pokemon.name %></h1>
 <img alt="<%= @pokemon.name %>-image" src="data:image/png;base64,<%= @pokemon.encoded_img %>"/>
-<ul>
-  <% @pokemon.types.each do |type| %>
-    <li><%= type.name %></li>
-  <% end %>
-</ul>
+
+  <%= @pokemon.types.map { |type| type.name }.join(', ') %>
 
