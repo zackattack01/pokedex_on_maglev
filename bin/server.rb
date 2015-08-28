@@ -21,20 +21,15 @@ class Types < SQLObject
 
   finalize!
 end
-# $cats = [
-#   { id: 1, name: "Curie" },
-#   { id: 2, name: "Markov" }
-# ]
-
-# $types = [
-#   { id: 1, pokemon_id: 1, text: "Curie loves string!" },
-#   { id: 2, pokemon_id: 2, text: "Markov is mighty!" },
-#   { id: 3, pokemon_id: 1, text: "Curie is cool!" }
-# ]
 
 class PokemonsController < ControllerBase
   def index
     @pokemons = Pokemon.all
+    render('index')
+  end
+
+  def index
+    @pokemon = Pokemon.find(params[:id])
     render('index')
   end
 end
