@@ -1,0 +1,16 @@
+<style>
+body {
+  background-color: black;
+  color: white;
+  font-family: 'Monaco' monospace;
+}
+</style>
+
+<!-- <h1>POKEMON</h1> -->
+<ul>
+  <% @pokemons.each do |poke| %>
+  <li>  
+    <h3><%= poke.name %></h3>
+  </li>
+  <% end %>
+</ul>

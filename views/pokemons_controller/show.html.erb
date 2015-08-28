@@ -1,0 +1,7 @@
+<h1><% poke.name %></h1>
+<img src="/images/<%= poke.image_url %>" alt="<%= poke.name %>-image">
+<ul>
+  <% poke.types.each do |type| %>
+    <li><%= type %>,</li>
+  <% end %>
+</ul>

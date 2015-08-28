@@ -1,0 +1,11 @@
+<form action="/pokemon" method="POST">
+  <label>PokeName:
+    <input type="text" name="pokemon[name]" value="<%= @pokemon.name %>">
+  </label>
+
+  <label>Image URL:
+    <input type="text" name="pokemon[image_url]" value="<%= @pokemon.image_url %>">
+  </label>
+
+  <input type="submit">
+</form>

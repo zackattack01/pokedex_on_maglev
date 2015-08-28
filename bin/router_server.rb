@@ -1,39 +1,54 @@
 require 'webrick'
 require_relative '../lib/controller_base'
 require_relative '../lib/router'
+require_relative '../lib/db_connection'
+require_relative '../lib/sql_object'
 
+DBConnection.reset
 
-$cats = [
-  { id: 1, name: "Curie" },
-  { id: 2, name: "Markov" }
-]
+class Pokemon < SQLObject
+  self.table_name = 'pokemons'
 
-$statuses = [
-  { id: 1, cat_id: 1, text: "Curie loves string!" },
-  { id: 2, cat_id: 2, text: "Markov is mighty!" },
-  { id: 3, cat_id: 1, text: "Curie is cool!" }
-]
+  has_many :types, foreign_key: :pokemon_id
 
-class StatusesController < ControllerBase
+  finalize!
+end
+
+class Types < SQLObject
+  self.table_name = 'types'
+
+  belongs_to :pokemon
+
+  finalize!
+end
+# $cats = [
+#   { id: 1, name: "Curie" },
+#   { id: 2, name: "Markov" }
+# ]
+
+# $types = [
+#   { id: 1, pokemon_id: 1, text: "Curie loves string!" },
+#   { id: 2, pokemon_id: 2, text: "Markov is mighty!" },
+#   { id: 3, pokemon_id: 1, text: "Curie is cool!" }
+# ]
+
+class PokemonsController < ControllerBase
   def index
-    statuses = $statuses.select do |s|
-      s[:cat_id] == Integer(params[:cat_id])
-    end
-
-    render_content(statuses.to_s, "text/text")
+    @pokemons = Pokemon.all
+    render('index')
   end
 end
 
-class Cats2Controller < ControllerBase
+class TypesController < ControllerBase
   def index
-    render_content($cats.to_s, "text/text")
+    render('index')
   end
 end
 
 router = Router.new
 router.draw do
-  get Regexp.new("^/cats$"), Cats2Controller, :index
-  get Regexp.new("^/cats/(?<cat_id>\\d+)/statuses$"), StatusesController, :index
+  get Regexp.new("^/pokemon$"), PokemonsController, :index
+  get Regexp.new("^/pokemon/(?<pokemon_id>\\d+)/types$"), TypesController, :index
 end
 
 server = WEBrick::HTTPServer.new(Port: 3000)
