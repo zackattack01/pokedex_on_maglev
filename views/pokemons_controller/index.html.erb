@@ -6,11 +6,12 @@ body {
 }
 </style>
 
-<!-- <h1>POKEMON</h1> -->
+<h1>POKEMON</h1>
 <ul>
   <% @pokemons.each do |poke| %>
   <li>  
     <h3><%= poke.name %></h3>
+    <!-- <img src="/images/<%= poke.image_url %>" alt="<%= poke.name %>-image"> -->
   </li>
   <% end %>
 </ul>

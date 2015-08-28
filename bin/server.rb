@@ -14,8 +14,16 @@ class Pokemon < SQLObject
   finalize!
 end
 
-class Types < SQLObject
+class Type < SQLObject
   self.table_name = 'types'
+
+  belongs_to :pokemon
+
+  finalize!
+end
+
+class PokePic < SQLObject
+  self.table_name = 'pokepics'
 
   belongs_to :pokemon
 
@@ -28,14 +36,15 @@ class PokemonsController < ControllerBase
     render('index')
   end
 
-  def index
-    @pokemon = Pokemon.find(params[:id])
-    render('index')
+  def show
+    @pokemon = Pokemon.find(params[:id].to_i)
+    render('show')
   end
 end
 
 class TypesController < ControllerBase
   def index
+    #@types = 
     render('index')
   end
 end
@@ -43,6 +52,7 @@ end
 router = Router.new
 router.draw do
   get Regexp.new("^/pokemon$"), PokemonsController, :index
+  get Regexp.new("^/pokemon/(?<id>\\d+)$"), PokemonsController, :show
   get Regexp.new("^/pokemon/(?<pokemon_id>\\d+)/types$"), TypesController, :index
 end
 
