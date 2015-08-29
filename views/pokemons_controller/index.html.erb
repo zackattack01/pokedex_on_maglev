@@ -25,16 +25,18 @@ a {
   display: inline-block;
 }
 
-a:hover, a:focus {
-  text-shadow: 0 0 10px #EBEBEB;
-  font-size: 1.2em;
+.poke-list-item img{
+  transition: all 500ms;
 }
 
-img:hover {
-  -ms-transform: scale(1.5); 
-  -webkit-transform: scale(1.5);
-  transform: scale(1.5);
+.poke-list-item:hover img, .poke-list-item:focus img {
+  text-shadow: 0 0 10px black;
+  -ms-transform: translateY(70px) scale(1.5); 
+  -webkit-transform: translateY(70px) scale(1.5);
+  transform: translateY(70px) scale(1.5); 
+  z-index: 12;
 }
+
 
 h1, h2, h3 {
   text-align: center;
@@ -54,6 +56,7 @@ h1, h2, h3 {
       <a href="/pokemon/<%= poke.id %>">
         <img alt="<%= poke.name %>-image" src="data:image/png;base64,<%= poke.encoded_img %>"/>
         <h3><%= poke.name %></h3>
+      <small class="types" style="opacity:0"><%= poke.types.map { |type| type.name }.join(', ') %></small>
       </a>
     </div>
   <% end %>
