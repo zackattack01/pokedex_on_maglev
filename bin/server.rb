@@ -9,13 +9,15 @@ DBConnection.reset
 class Pokemon < SQLObject
   self.table_name = 'pokemons'
 
-  has_many :types, foreign_key: :pokemon_id
+  has_many :types, through: :poke_types, source: :type
+  has_many :poke_types, foreign_key: :pokemon_id
+  has_many :poke_abilities, foreign_key: :pokemon_id
 
   finalize!
 end
 
 class PokeType < SQLObject
-  self.table_name = 'types'
+  self.table_name = 'poke_types'
 
   belongs_to :pokemon
   belongs_to :type
@@ -32,8 +34,23 @@ class Type < SQLObject
   finalize!
 end
 
+class PokeAbility
+  self.table_name = 'poke_abilities'
 
+  belongs_to :pokemon
+  belongs_to :ability
 
+  finalize!
+end
+
+class Ability < SQLObject
+  self.table_name = 'abilities'
+
+  has_many :poke_abilities, foreign_key: :ability_id
+  has_many :pokemon, through: :poke_abilities, source: :pokemon
+  
+  finalize!
+end
 
 
 
