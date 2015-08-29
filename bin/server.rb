@@ -14,13 +14,30 @@ class Pokemon < SQLObject
   finalize!
 end
 
-class Type < SQLObject
+class PokeType < SQLObject
   self.table_name = 'types'
 
   belongs_to :pokemon
+  belongs_to :type
 
   finalize!
 end
+
+class Type < SQLObject
+  self.table_name = 'types'
+
+  has_many :poke_types, foreign_key: :type_id
+  has_many :pokemon, through: :poke_types, source: :pokemon
+  
+  finalize!
+end
+
+
+
+
+
+
+
 
 class PokemonsController < ControllerBase
   def index

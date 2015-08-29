@@ -80,4 +80,25 @@ module Associatable
           ).first
     end
   end
+
+  def has_many_through(name, through_name, source_name)
+    define_method(name) do
+      through_options = self.class.assoc_options[through_name]
+      source_options = through_options.model_class.assoc_options[source_name]
+      
+      source_options.model_class.parse_all(DBConnection.execute(<<-SQL, id)
+        SELECT
+          source_table.*
+        FROM  
+          #{through_options.table_name} AS through_table
+        JOIN
+          #{source_options.table_name} AS source_table
+        ON 
+          through_table.#{source_options.foreign_key} = source_table.#{source_options.primary_key}
+        WHERE
+          through_table.#{through_options.primary_key} = ?
+      SQL
+          )
+    end
+  end
 end
