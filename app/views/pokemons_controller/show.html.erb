@@ -1,18 +1,39 @@
 <div class="title">
   <h1><%= @pokemon.name.upcase %></h1>
 </div>
-<div class="poke-show">
-  <img alt="<%= @pokemon.name %>-image" src="/<%= @pokemon.id.rjust(3, '0') %>.png"/>
+<div class="poke-show center">
+  <img class="center poke-img" alt="<%= @pokemon.name %>-image" src="/<%= @pokemon.id.rjust(3, '0') %>.png"/>
   <br>
-  <h3>TYPES:</h3>
-  <h2><%= @pokemon.types.map { |type| type.name.upcase }.join(', ') %></h2>
-  <h3>MOVES:</h3>
-  <h2><%= @pokemon.moves.map { |move| move.name.upcase }.join(', ') %></h2>
-  <h3>ABILITIES:</h3>
-  <h2><%= @pokemon.abilities.map { |ability| ability.name.upcase }.join(', ') %></h2>
+  <div class="poke-stats">
+  <h3>TYPES</h3>
+      <ul>
+        <% @pokemon.types.each do |type| %>
+          <li><a href="/types/<%= type.id %>"><%= type.name.upcase %></a></li>
+        <% end %>
+      </ul>
+
+    <h3>MOVES</h3>
+      <ul>
+        <% @pokemon.moves.each do |move| %>
+          <li><a href="/moves/<%= move.id %>"><%= move.name.upcase %></a></li>
+        <% end %>
+      </ul> 
+
+    <h3>ABILITIES</h3>
+      <ul>
+        <% @pokemon.abilities.each do |ability| %>
+          <li><a href="/abilities/<%= ability.id %>"><%= ability.name.upcase %></a></li>
+        <% end %>
+      </ul> 
+  </div>
 </div>
 <script>
 $(function() {
-  
+  $('.poke-stats').accordion({
+      heightStyle: "content"
+    });
+   $('.poke-img').animate({
+        opacity: 1
+     }, 1500);
 });
 </script>

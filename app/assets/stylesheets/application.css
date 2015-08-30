@@ -5,7 +5,10 @@ body {
 }
 
 .title {
-  background-color: red;
+  background-color: #4C0606;
+  box-shadow: 0 2px 2px #A11111;
+  text-shadow: 0 0 3px red;
+  color: black;
   margin: 0;
   border: none;
   position: fixed;
@@ -13,12 +16,15 @@ body {
   left: 0;
   width: 100%;
   z-index: 10;
-  border-bottom: 1px solid white;
-  box-shadow: 0 2px 2px #EBEBEB;
+}
+
+.poke-list-item a {
+  text-shadow: -2px -1px 10px red;
+  color: #ECEBEB ;
 }
 
 a {
-  color: white;
+  color: #A11111;
   text-decoration: none;
   display: inline-block;
 }
@@ -27,8 +33,16 @@ a {
   transition: all 500ms;
 }
 
+.center {
+  -moz-transform: translateX(-50%); 
+  -ms-transform: translateX(-50%); 
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%); 
+}
+
 .poke-list-item:hover img, .poke-list-item:focus img {
   text-shadow: 0 0 10px black;
+  -moz-transform: translateY(70px) scale(1.5); 
   -ms-transform: translateY(70px) scale(1.5); 
   -webkit-transform: translateY(70px) scale(1.5);
   transform: translateY(70px) scale(1.5); 
@@ -54,10 +68,48 @@ h1, h2, h3 {
 
 .poke-show {
   margin-left: 50%;
-  transform: translateX(-50%);
   margin-top: 100px;
 }
 
 .poke-show img {
   width: 400px;
+  margin-left: 50%;
+}
+
+h3.ui-accordion-header {
+  padding: 7px;
+}
+
+h3.ui-accordion-header:not(.ui-accordion-header-active) {
+  margin: -2px 0 0 0;
+  box-shadow: 0 0 10px #EBEBEB;
+  font-size: 1.3em;
+}
+
+.ui-accordion-header:hover {
+  cursor: pointer;
+}
+
+.ui-accordion-header-active {
+  outline: none;
+  box-shadow: 0 0 10px red;
+  color: red;
+  font-size: 1.5em;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  padding: 7px;
+}
+
+li > a:hover {
+  color: #EBEBEB;
+  text-shadow: 0 0 10px #EBEBEB;
+}
+
+img.poke-img {
+  opacity: 0;
 }
