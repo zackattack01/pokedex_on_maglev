@@ -51,3 +51,13 @@ h1, h2, h3 {
 .poke-list { margin: 120px 40px 100px 40px;}
 
 .poke-list-item { display: inline-block;}
+
+.poke-show {
+  margin-left: 50%;
+  transform: translateX(-50%);
+  margin-top: 100px;
+}
+
+.poke-show img {
+  width: 400px;
+}

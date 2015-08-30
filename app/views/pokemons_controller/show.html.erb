@@ -1,41 +1,8 @@
-<style>
-  body {
-    background-color: black;
-    color: white;
-    font-family: 'Monaco' monospace;
-    text-align: center;
-  }
-
-  .title {
-    background-color: red;
-    margin: 0;
-    border: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 10;
-    border-bottom: 1px solid white;
-    box-shadow: 0 2px 2px #EBEBEB;
-  }
-
-  .poke-show {
-    margin-left: 50%;
-    transform: translateX(-50%);
-    margin-top: 100px;
-  }
-
-  img {
-    width: 400px;
-  }
-
-
-</style>
 <div class="title">
   <h1><%= @pokemon.name.upcase %></h1>
 </div>
 <div class="poke-show">
-  <img alt="<%= @pokemon.name %>-image" src="data:image/png;base64,<%= @pokemon.encoded_img %>"/>
+  <img alt="<%= @pokemon.name %>-image" src="/<%= @pokemon.id.rjust(3, '0') %>.png"/>
   <br>
   <h3>TYPES:</h3>
   <h2><%= @pokemon.types.map { |type| type.name.upcase }.join(', ') %></h2>
