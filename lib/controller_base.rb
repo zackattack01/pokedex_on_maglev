@@ -7,11 +7,12 @@ require_relative './params'
 require_relative './flash'
 
 class ControllerBase
-  attr_reader :req, :res, :params
+  attr_reader :req, :res, :params, :header
 
   def initialize(req, res, route_params = {})
     @req, @res = req, res
     @params = Params.new(req, route_params)
+    @header = ERB.new(File.read("app/views/_app_header.html.erb")).result(binding)
   end
 
   def already_built_response?
@@ -38,7 +39,8 @@ class ControllerBase
 
   def render(template_name)
     path = "app/views/#{self.class.to_s.underscore}/#{template_name}.html.erb"
-    render_content(ERB.new(File.read(path)).result(binding), "text/html")
+    content = header + ERB.new(File.read(path)).result(binding) + "</body></html>"
+    render_content(content, "text/html")
     flash.store_flash(res)
   end
 
