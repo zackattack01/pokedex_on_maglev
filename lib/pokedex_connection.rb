@@ -1,19 +1,17 @@
 require 'pg'
 
-# https://tomafro.net/2010/01/tip-relative-paths-with-file-expand-path
-# ROOT_FOLDER = File.join(File.dirname(__FILE__), '..')
-# SQL_FILE = File.join(ROOT_FOLDER, 'pokesnag_ultra.sql')
-# DB_FILE = File.join(ROOT_FOLDER, 'pokemon.db')
-
-require 'pry'
-
 class Pokedex 
   def self.open
     if ENV["USER"] == "zacharyolson"
       @conn = PG::Connection.new(dbname: 'pokedex')
     else
-      ##todo
-
+      @conn = PG::Connection.new(
+        host: 'ec2-54-83-59-154.compute-1.amazonaws.com',
+        dbname: 'd9u4r4jh0k4huk',
+        port: 5432,
+        user: 'mcbkpplzftqrmi'
+        password: '0IkiVL_rPNbozqeAt2YrcDYe5S'
+      )
     end
   end
 
@@ -24,12 +22,10 @@ class Pokedex
   end
 
   def self.exec(*args)
-    puts args[0]
     self.instance.exec(*args)
   end
 
   def self.exec_params(*args)
-    puts args[0]
     self.instance.exec_params(*args)
   end
 end

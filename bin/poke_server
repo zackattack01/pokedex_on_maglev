@@ -1,5 +1,4 @@
 #! /usr/bin/env ruby
-require 'pry'
 require 'webrick'
 require_relative '../lib/router'
 require_relative '../app/controllers/pokemon_controller'

@@ -8,9 +8,8 @@ poke_types = []
 moves = {}
 poke_moves = []
 
+## shoutout to pokeapi their db is incredible
 (1..151).each do |pokeid|
-  
-  ## shoutout to pokeapi this is incredible
   info = HTTParty.get("http://pokeapi.co/api/v1/pokemon/#{pokeid}")
   pokemon = info.select { |k, v| %w{ name sp_atk sp_def weight height attack defense catch_rate }.include? k }
   info['abilities'].each do |ability|
