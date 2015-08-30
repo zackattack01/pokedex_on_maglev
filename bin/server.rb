@@ -67,7 +67,12 @@ class Pokemon < SQLObject
 
   has_many :poke_types, foreign_key: :pokemon_id
   has_many_through :types, :poke_types, :type
-  has_many :poke_abilities, foreign_key: :pokemon_id, class_name: :Ability
+
+  has_many :poke_abilities, foreign_key: :pokemon_id
+  has_many_through :abilities, :poke_abilities, :ability
+
+  has_many :poke_moves, foreign_key: :pokemon_id
+  has_many_through :moves, :poke_moves, :move
 
   finalize!
 end

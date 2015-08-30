@@ -39,4 +39,8 @@
   <br>
   <h3>TYPES:</h3>
   <h2><%= @pokemon.types.map { |type| type.name.upcase }.join(', ') %></h2>
+  <h3>MOVES:</h3>
+  <h2><%= @pokemon.moves.map { |move| move.name.upcase }.join(', ') %></h2>
+  <h3>ABILITIES:</h3>
+  <h2><%= @pokemon.abilities.map { |ability| ability.name.upcase }.join(', ') %></h2>
 </div>
