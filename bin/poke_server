@@ -2,12 +2,14 @@
 
 require 'webrick'
 require '/lib/router'
+Dir[File.dirname(__FILE__) + '../app/controllers/*.rb'].each {|file| require file }
 
-
-
-
-
-
+router = Router.new
+router.draw do
+  get Regexp.new("^/pokemon$"), PokemonsController, :index
+  get Regexp.new("^/pokemon/(?<id>\\d+)$"), PokemonsController, :show
+  get Regexp.new("^/pokemon/(?<pokemon_id>\\d+)/types$"), TypesController, :index
+end
 
 PORT = ARGV[0] || 3000
 server = WEBrick::HTTPServer.new(Port: PORT)
