@@ -5,7 +5,10 @@ require_relative '../lib/db_connection'
 require_relative '../lib/sql_object'
 require 'pry'
 
-DBConnection.reset
+# DBConnection.reset
+# %x( rm '#{DB_FILE}' )
+# %x( psql #{DB_FILE} < #{SQL_FILE} )
+
 
 class Type < SQLObject
   self.table_name = 'types'
@@ -103,7 +106,7 @@ router.draw do
   get Regexp.new("^/pokemon/(?<pokemon_id>\\d+)/types$"), TypesController, :index
 end
 
-# binding.pry
+binding.pry
 server = WEBrick::HTTPServer.new(Port: 3000)
 server.mount_proc('/') do |req, res|
   route = router.run(req, res)

@@ -6,7 +6,7 @@ module Searchable
     	"#{attr_name} = ?" 
     end.join(' AND ')
 
-    parse_all(DBConnection.execute(<<-SQL, *params.values)
+    parse_all(Pokedex.exec(<<-SQL, *params.values)
 					    	SELECT
 					    		*
 					    	FROM

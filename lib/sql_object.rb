@@ -3,12 +3,14 @@ require_relative 'db_connection'
 require_relative 'searchable'
 require_relative 'associatable'
 
+Pokedex.open
+
 class SQLObject
   extend Searchable
   extend Associatable
 
   def self.set_columns
-    cols = DBConnection.execute2(<<-SQL) 
+    cols = Pokedex.exec(<<-SQL) 
       SELECT 
         * 
       FROM 
@@ -17,7 +19,7 @@ class SQLObject
         1 
     SQL
 
-    cols.first.map(&:to_sym)
+    cols.fields.map(&:to_sym)
   end
 
   def self.columns
@@ -45,7 +47,7 @@ class SQLObject
   end
 
   def self.all
-    parse_all(DBConnection.execute(<<-SQL) 
+    parse_all(Pokedex.exec(<<-SQL) 
                 SELECT 
                   * 
                 FROM 
@@ -59,7 +61,7 @@ class SQLObject
   end
 
   def self.find(id)
-    found = DBConnection.execute(<<-SQL, id) 
+    found = Pokedex.exec(<<-SQL, id) 
               SELECT 
                 * 
               FROM 
@@ -94,14 +96,14 @@ class SQLObject
     col_names = "(#{self.class.columns[1..-1].join(', ')})"
     question_marks = "(#{(['?'] * (col_names.count(',') + 1)).join(', ')})"
     
-    DBConnection.execute(<<-SQL, *attribute_values.drop(1)) 
+    Pokedex.exec(<<-SQL, *attribute_values.drop(1)) 
       INSERT INTO
         #{self.class.table_name} #{col_names}
       VALUES
         #{question_marks}
     SQL
 
-    self.id = DBConnection.last_insert_row_id
+    self.id = Pokedex.last_insert_row_id
   end
 
   def update
@@ -109,7 +111,7 @@ class SQLObject
       "#{attr_name} = #{val}"
     end.join(', ')
 
-    DBConnection.execute(<<-SQL, *attribute_values.rotate)
+    Pokedex.execute(<<-SQL, *attribute_values.rotate)
       UPDATE
         #{self.class.table_name} 
       SET
