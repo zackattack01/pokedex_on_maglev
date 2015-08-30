@@ -65,7 +65,7 @@ module Associatable
       through_options = self.class.assoc_options[through_name]
       source_options = through_options.model_class.assoc_options[source_name]
       
-      source_options.model_class.parse_all(DBConnection.execute(<<-SQL, id)
+      source_options.model_class.parse_all(Pokedex.exec_params(<<-SQL, [id.to_s])
         SELECT
           source_table.*
         FROM  
@@ -75,7 +75,7 @@ module Associatable
         ON 
           through_table.#{source_options.foreign_key} = source_table.#{source_options.primary_key}
         WHERE
-          through_table.#{through_options.primary_key} = ?
+          through_table.#{through_options.primary_key} = $1
         LIMIT
           1
       SQL
@@ -87,7 +87,7 @@ module Associatable
     define_method(name) do
       through_options = self.class.assoc_options[through_name]
       source_options = through_options.model_class.assoc_options[source_name]
-      source_options.model_class.parse_all(DBConnection.execute(<<-SQL, id)
+      source_options.model_class.parse_all(Pokedex.exec(<<-SQL, [id.to_s])
         SELECT
           source_table.*
         FROM  
@@ -97,7 +97,7 @@ module Associatable
         ON 
           through_table.#{source_options.foreign_key} = source_table.#{source_options.primary_key}
         WHERE
-          through_table.#{through_options.foreign_key} = ?
+          through_table.#{through_options.foreign_key} = $1
       SQL
           )
     end

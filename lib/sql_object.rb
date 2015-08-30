@@ -61,18 +61,17 @@ class SQLObject
   end
 
   def self.find(id)
-    found = Pokedex.exec(<<-SQL, id) 
+    found = Pokedex.exec_params(<<-SQL, [id.to_s]) 
               SELECT 
                 * 
               FROM 
                 #{table_name}
               WHERE
-                id = ?
+                id = $1
               LIMIT
                 1
             SQL
-    
-    found.empty? ? nil : new(found.first)
+    found.to_a.empty? ? nil : new(found.to_a.first)
   end
 
   def initialize(params = {})
@@ -111,7 +110,7 @@ class SQLObject
       "#{attr_name} = #{val}"
     end.join(', ')
 
-    Pokedex.execute(<<-SQL, *attribute_values.rotate)
+    Pokedex.exec(<<-SQL, *attribute_values.rotate)
       UPDATE
         #{self.class.table_name} 
       SET

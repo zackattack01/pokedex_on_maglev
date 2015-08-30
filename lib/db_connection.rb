@@ -19,15 +19,8 @@ class Pokedex
     end
   end
 
-  # def self.reset
-  #   %x( rm '#{DB_FILE}' )
-  #   %x( psql #{DB_FILE} < #{SQL_FILE} )
-
-  #   Pokedex.open()
-  # end
-
   def self.instance
-    #reset if @conn.nil?
+    Pokedex.open() if @conn.nil?
 
     @conn
   end
