@@ -16,7 +16,7 @@ router.draw do
   get Regexp.new("^/pokemon/(?<id>\\d+)$"), PokemonsController, :show
   get Regexp.new("^/(?<filename>\\w+).css$"), StyleSheetsController, :style
   get Regexp.new("^/(?<image_name>\\w+)\.(?<img_ext>\\jpeg$|png$|jpg$)"), ImagesController, :render_image
-  get Regexp.new("^/(?<scriptname>\\w+).js$"), ScriptsController, :script
+  get Regexp.new("^/(?<scriptname>[\\w\-_]+).js$"), ScriptsController, :script
   get Regexp.new("^/pokemon/(?<pokemon_id>\\d+)/types$"), TypesController, :index
 end
 
