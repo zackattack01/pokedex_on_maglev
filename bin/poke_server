@@ -1,8 +1,12 @@
 #! /usr/bin/env ruby
-
+require 'pry'
 require 'webrick'
-require '/lib/router'
-Dir[File.dirname(__FILE__) + '../app/controllers/*.rb'].each {|file| require file }
+require_relative '../lib/router'
+require_relative '../app/controllers/pokemon_controller'
+require_relative '../app/controllers/types_controller'
+require_relative '../app/controllers/moves_controller'
+require_relative '../app/controllers/abilities_controller'
+
 
 router = Router.new
 router.draw do

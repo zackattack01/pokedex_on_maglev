@@ -1,7 +1,7 @@
-require_relative 'db_connection'
+require_relative 'pokedex_connection'
 
 module Searchable
-  def self.find(id)
+  def find(id)
     found = Pokedex.exec_params(<<-SQL, [id.to_s]) 
               SELECT 
                 * 
@@ -12,7 +12,7 @@ module Searchable
               LIMIT
                 1
             SQL
-            
+
     found.to_a.empty? ? nil : new(found.to_a.first)
   end
 

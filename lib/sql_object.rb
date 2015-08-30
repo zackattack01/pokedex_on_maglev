@@ -1,13 +1,13 @@
 require 'active_support/inflector'
-require_relative 'db_connection'
+require_relative 'pokedex_connection'
 require_relative 'searchable'
 require_relative 'associatable'
 
 Pokedex.open
 
 class SQLObject
-  extend Searchable
   extend Associatable
+  extend Searchable
 
   def self.set_columns
     cols = Pokedex.exec(<<-SQL) 

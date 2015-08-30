@@ -37,7 +37,7 @@ class ControllerBase
   end
 
   def render(template_name)
-    path = "views/#{self.class.to_s.underscore}/#{template_name}.html.erb"
+    path = "app/views/#{self.class.to_s.underscore}/#{template_name}.html.erb"
     render_content(ERB.new(File.read(path)).result(binding), "text/html")
     flash.store_flash(res)
   end
