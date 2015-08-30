@@ -1,13 +1,13 @@
-require 'sqlite3'
+require 'pg'
 
 # https://tomafro.net/2010/01/tip-relative-paths-with-file-expand-path
 ROOT_FOLDER = File.join(File.dirname(__FILE__), '..')
 SQL_FILE = File.join(ROOT_FOLDER, 'pokesnag_ultra.sql')
 DB_FILE = File.join(ROOT_FOLDER, 'pokemon.db')
 
-class DBConnection
+class DBConnection < PG::Connection
   def self.open(db_file_name)
-    @db = SQLite3::Database.new(db_file_name)
+    @db = PG::Connection.new(db_file_name)
     @db.results_as_hash = true
     @db.type_translation = true
 
@@ -15,12 +15,9 @@ class DBConnection
   end
 
   def self.reset
-    commands = [
-      "rm '#{DB_FILE}'",
-      "cat '#{SQL_FILE}' | sqlite3 '#{DB_FILE}'"
-    ]
+    %x( rm '#{DB_FILE}' )
+    %x( psql #{DB_FILE} < #{SQL_FILE} )
 
-    commands.each { |command| `#{command}` }
     DBConnection.open(DB_FILE)
   end
 
