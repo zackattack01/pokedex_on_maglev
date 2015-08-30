@@ -1,7 +1,7 @@
 require 'active_support/inflector'
 require_relative 'searchable'
+require 'byebug'
 
-# Phase IIIa
 class AssocOptions
   attr_accessor(
     :foreign_key,
@@ -18,6 +18,7 @@ class AssocOptions
   end
 end
 
+## allow options to be overriden and merged with defaults
 class BelongsToOptions < AssocOptions
   def initialize(name, options = {})
     @name = name
@@ -37,20 +38,21 @@ class HasManyOptions < AssocOptions
 end
 
 module Associatable
+  ## store association options as ivar for has_one and has_many_through
   def belongs_to(name, options = {})
-    options = BelongsToOptions.new(name, options)
+    self.assoc_options[name] = BelongsToOptions.new(name, options)
     define_method(name) do 
-      fk = send("#{options.foreign_key}")
-      options.model_class.where(options.primary_key => fk).first
+      these_options = self.class.assoc_options[name]
+      fk = send("#{these_options.foreign_key}")
+      these_options.model_class.where(these_options.primary_key => fk).first
     end
-
-    assoc_options[name] = options
   end
 
   def has_many(name, options = {})
-    options = HasManyOptions.new(name, self.to_s, options)
+    self.assoc_options[name] = HasManyOptions.new(name, self.name, options)
     define_method(name) do 
-      options.model_class.where(options.foreign_key => send(options.primary_key))
+      these_options = self.class.assoc_options[name]
+      these_options.model_class.where(these_options.foreign_key => send(these_options.primary_key))
     end
   end
 
@@ -85,7 +87,6 @@ module Associatable
     define_method(name) do
       through_options = self.class.assoc_options[through_name]
       source_options = through_options.model_class.assoc_options[source_name]
-      
       source_options.model_class.parse_all(DBConnection.execute(<<-SQL, id)
         SELECT
           source_table.*
@@ -96,7 +97,7 @@ module Associatable
         ON 
           through_table.#{source_options.foreign_key} = source_table.#{source_options.primary_key}
         WHERE
-          through_table.#{through_options.primary_key} = ?
+          through_table.#{through_options.foreign_key} = ?
       SQL
           )
     end
