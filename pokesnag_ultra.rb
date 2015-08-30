@@ -9,8 +9,10 @@ moves = {}
 poke_moves = []
 
 (1..151).each do |pokeid|
+  
+  ## shoutout to pokeapi this is incredible
   info = HTTParty.get("http://pokeapi.co/api/v1/pokemon/#{pokeid}")
-  pokemon = info.select { |k, v| %w{ name species sp_atk sp_def weight height attack defense catch_rate }.include? k }
+  pokemon = info.select { |k, v| %w{ name sp_atk sp_def weight height attack defense catch_rate }.include? k }
   info['abilities'].each do |ability|
     unless abilities[ability['name']]
       abilities[ability['name']] = abilities.count + 1
@@ -40,49 +42,46 @@ poke_moves = []
   pokemons << pokemon
 end
 
- File.open('pokeinfo.txt', 'w') do |f|
-  f.puts "INSERT INTO\n\tpokemons (id, name, pokemon_id)\nVALUES"
+File.open('pokesnag_ultra.sql', 'a') do |f|
+  f.puts "INSERT INTO\n\tpokemons (attack, catch_rate, defense, height, name, sp_atk, sp_def, weight, description, encoded_img, id)\nVALUES"
   pokemons.each do |poke|
-    f.puts "\t(\"#{ poke.values.join('", "') }\"),"
+    f.puts "\t('#{ poke.values.map { |val| val.frozen? ? val : val.gsub("'", "''") }.join("', '") }'),"
   end
-  f.puts "\n\n\n\n"
-  f.puts "INSERT INTO\n\tabilities (id, name, pokemon_id)\nVALUES"
+  f.puts "\n\n"
   
+  f.puts "INSERT INTO\n\tabilities (name, id)\nVALUES"
   abilities.to_a.each do |ability|
-    f.puts "\t(\"#{ ability.join('", "') }\"),"
+    f.puts "\t('#{ ability.map { |val| val.frozen? ? val : val.gsub("'", "''") }.join("', '") }'),"
   end
-  f.puts "\n\n\n\n"
-  f.puts "INSERT INTO\n\tpoke_abilities (id, name, pokemon_id)\nVALUES"
-  
+  f.puts "\n\n"
+
+  f.puts "INSERT INTO\n\tpoke_abilities (id, pokemon_id, ability_id)\nVALUES"
   poke_abilities.each_with_index do |ability|
-    f.puts "\t(\"#{ ability.join('", "') }\"),"
+    f.puts "\t('#{ ability.join("', '") }'),"
   end
-  f.puts "\n\n\n\n"
+  f.puts "\n\n"
   
-  f.puts "INSERT INTO\n\ttypes (id, name, pokemon_id)\nVALUES"
-
+  f.puts "INSERT INTO\n\ttypes (name, id)\nVALUES"
   types.to_a.each do |type|
-    f.puts "\t(\"#{ type.join('", "') }\"),"
+    f.puts "\t('#{ type.join("', '") }'),"
   end
-  f.puts "\n\n\n\n"
+  f.puts "\n\n"
   
-  f.puts "INSERT INTO\n\tpoke_types (id, name, pokemon_id)\nVALUES"
-
+  f.puts "INSERT INTO\n\tpoke_types (id, pokemon_id, type_id)\nVALUES"
   poke_types.each do |type|
-    f.puts "\t(\"#{ type.join('", "') }\"),"
+    f.puts "\t('#{ type.join("', '") }'),"
   end
-  f.puts "\n\n\n\n"
+  f.puts "\n\n"
   
-  f.puts "INSERT INTO\n\tmoves (id, name, pokemon_id)\nVALUES"
+  f.puts "INSERT INTO\n\tmoves (accuracy, description, power, pp, id, name)\nVALUES"
   
   moves.map { |k, v| v.merge({ 'name' => k }).values }.each do |move|
-    f.puts "\t(\"#{ move.join('", "') }\"),"
+    f.puts "\t('#{ move.map { |val| val.frozen? ? val : val.gsub("'", "''") }.join("', '") }'),"
   end
-  f.puts "\n\n\n\n"
+  f.puts "\n\n"
   
-  f.puts "INSERT INTO\n\tpoke_moves (id, name, pokemon_id)\nVALUES"
-
+  f.puts "INSERT INTO\n\tpoke_moves (id, pokemon_id, move_id)\nVALUES"
   poke_moves.each do |move|
-    f.puts "\t(\"#{ move.join('", "') }\"),"
+    f.puts "\t('#{ move.join("', '") }'),"
   end
 end

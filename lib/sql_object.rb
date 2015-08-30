@@ -60,20 +60,6 @@ class SQLObject
     results.map { |attr_hash| new(attr_hash) }
   end
 
-  def self.find(id)
-    found = Pokedex.exec_params(<<-SQL, [id.to_s]) 
-              SELECT 
-                * 
-              FROM 
-                #{table_name}
-              WHERE
-                id = $1
-              LIMIT
-                1
-            SQL
-    found.to_a.empty? ? nil : new(found.to_a.first)
-  end
-
   def initialize(params = {})
     params.each do |attr_name, value|
       unless self.class.columns.include?(attr_name.to_sym)
@@ -102,7 +88,7 @@ class SQLObject
         #{question_marks}
     SQL
 
-    self.id = Pokedex.last_insert_row_id
+    self.id = Pokedex.get_last_result['id'].to_i
   end
 
   def update
