@@ -1,0 +1,53 @@
+body {
+  background-color: black;
+  color: white;
+  font-family: 'Monaco' monospace;
+}
+
+.title {
+  background-color: red;
+  margin: 0;
+  border: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  border-bottom: 1px solid white;
+  box-shadow: 0 2px 2px #EBEBEB;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.poke-list-item img{
+  transition: all 500ms;
+}
+
+.poke-list-item:hover img, .poke-list-item:focus img {
+  text-shadow: 0 0 10px black;
+  -ms-transform: translateY(70px) scale(1.5); 
+  -webkit-transform: translateY(70px) scale(1.5);
+  transform: translateY(70px) scale(1.5); 
+  z-index: 12;
+}
+
+h1, h2, h3 {
+  text-align: center;
+}
+
+.bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+}
+
+.poke-list { margin: 120px 40px 100px 40px;}
+
+.poke-list-item { display: inline-block;}
