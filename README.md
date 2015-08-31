@@ -2,7 +2,7 @@
 A Responsive Pokedex built using only Webrick and ActiveSupport
 (no rails or active record)
 
-> view it live [here]("https://pokedex-sans-rails.herokuapp.com/pokemon")
+view it live [here](https://pokedex-sans-rails.herokuapp.com/pokemon)
 
 ### Features
 
