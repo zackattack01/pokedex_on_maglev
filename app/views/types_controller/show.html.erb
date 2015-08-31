@@ -7,7 +7,7 @@
   </div>
       <ul>
         <% @type.pokemon.each do |poke| %>
-          <li style="padding:15px"><a href="/pokemon/<%= poke.id %>"><%= poke.name.upcase %></a></li>
+          <li style="padding:15px 0 15px 0"><a href="/pokemon/<%= poke.id %>"><%= poke.name.upcase %></a></li>
         <% end %>
       </ul>
   </div>

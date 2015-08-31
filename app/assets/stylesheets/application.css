@@ -77,7 +77,7 @@ h1, h2, h3 {
 }
 
 h3.ui-accordion-header {
-  padding: 7px;
+  padding: 7px 0 7px 0;
 }
 
 h3.ui-accordion-header:not(.ui-accordion-header-active) {
@@ -107,14 +107,25 @@ h3.ui-accordion-header:not(.ui-accordion-header-active) {
 }
 
 ul {
+  padding-left: 0;
   list-style-type: none;
 }
 
-li {
-  padding: 7px;
+.instructions {
+  text-align: center;
+  margin-top:-15px; 
+  color: slategrey;
 }
 
-li > a:hover {
+li {
+  padding: 7px 0 7px 0;
+  color: #A11111;
+  text-align: center;
+}
+
+li > a { font-size: 1.2em; }
+
+li > a:hover, a:hover {
   color: #EBEBEB;
   text-shadow: 0 0 10px #EBEBEB;
 }

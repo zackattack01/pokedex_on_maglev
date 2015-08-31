@@ -7,6 +7,7 @@
   <div class="poke-stats">
   <h3>TYPES</h3>
       <ul>
+        <li class="instructions"><small>CLICK ANY TO VIEW OTHER POKES BY TYPE</small></li>
         <% @pokemon.types.each do |type| %>
           <li><a href="/types/<%= type.id %>"><%= type.name.upcase %></a></li>
         <% end %>
@@ -14,6 +15,7 @@
 
     <h3>MOVES</h3>
       <ul>
+        <li class="instructions"><small>CLICK ANY TO SEE MOVE INFO</small></li>
         <% @pokemon.moves.each do |move| %>
           <li><a href="/moves/<%= move.id %>"><%= move.name.upcase %></a></li>
         <% end %>
@@ -22,7 +24,7 @@
     <h3>ABILITIES</h3>
       <ul>
         <% @pokemon.abilities.each do |ability| %>
-          <li><a href="/abilities/<%= ability.id %>"><%= ability.name.upcase %></a></li>
+          <li><%= ability.name.upcase %></li>
         <% end %>
       </ul> 
   </div>
