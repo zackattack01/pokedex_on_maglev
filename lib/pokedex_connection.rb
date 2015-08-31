@@ -9,7 +9,7 @@ class Pokedex
         host: 'ec2-54-83-59-154.compute-1.amazonaws.com',
         dbname: 'd9u4r4jh0k4huk',
         port: 5432,
-        user: 'mcbkpplzftqrmi'
+        user: 'mcbkpplzftqrmi',
         password: '0IkiVL_rPNbozqeAt2YrcDYe5S'
       )
     end
