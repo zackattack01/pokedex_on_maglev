@@ -90,11 +90,20 @@ h3.ui-accordion-header:not(.ui-accordion-header-active) {
   cursor: pointer;
 }
 
-.ui-accordion-header-active {
+.ui-accordion-header-active, .header-label {
   outline: none;
   box-shadow: 0 0 10px red;
   color: red;
   font-size: 1.5em;
+}
+
+.header-label {
+  margin-top: 20%;
+  padding: 1px;
+}
+
+.data-index {
+  margin-left: 50%;
 }
 
 ul {

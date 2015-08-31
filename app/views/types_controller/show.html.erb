@@ -1,0 +1,14 @@
+<div class="title">
+  <h1><%= @type.name.upcase %></h1>
+</div>
+<div class="data-index center">
+  <div class="header-label">
+    <h3>OTHER <%= @type.name.upcase %> POKES</h3>
+  </div>
+      <ul>
+        <% @type.pokemon.each do |poke| %>
+          <li style="padding:15px"><a href="/pokemon/<%= poke.id %>"><%= poke.name.upcase %></a></li>
+        <% end %>
+      </ul>
+  </div>
+</div>
