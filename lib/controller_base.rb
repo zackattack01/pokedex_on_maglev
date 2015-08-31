@@ -38,8 +38,13 @@ class ControllerBase
   end
 
   def render(template_name)
-    path = "app/views/#{self.class.to_s.underscore}/#{template_name}.html.erb"
-    content = header + ERB.new(File.read(path)).result(binding) + "</body></html>"
+    if self.class.to_s =~ /Zack/
+      path = "app/views/#{self.class.to_s.underscore}/#{template_name}.html"
+      content = File.read(path)
+    else
+      path = "app/views/#{self.class.to_s.underscore}/#{template_name}.html.erb"
+      content = header + ERB.new(File.read(path)).result(binding) + "</body></html>"
+    end
     render_content(content, "text/html")
     flash.store_flash(res)
   end
