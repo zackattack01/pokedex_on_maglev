@@ -11,7 +11,6 @@ class Route
     pattern =~ req.path 
   end
 
- 
   ## grab params and create an instance of the matching controller
   def run(req, res)
     route_params = {}
