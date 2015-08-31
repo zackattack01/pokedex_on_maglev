@@ -2,6 +2,10 @@ require_relative '../../lib/controller_base'
 require_relative '../models/pokemon'
 
 class PokemonsController < ControllerBase
+  def root
+    redirect_to('/pokemon')
+  end
+
   def index
     @pokemons = Pokemon.all
     render('index')
