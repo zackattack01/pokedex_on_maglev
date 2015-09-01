@@ -4,11 +4,23 @@ Zack.Routers.Router = Backbone.Router.extend({
   },
 
   routes: {
-    '': 'root'
+    '': 'root',
+    'projects': 'projectsTab'
   },
 
   root: function() {
-    var rootView = new Zack.Views.RootView()
-    this.$rootEl.html(this.rootView.render().$el);
+    var view = new Zack.Views.HomeView()
+    this._swapView(view);
+  },
+
+  projectsTab: function() {
+    var view = new Zack.Views.ProjectsView()
+    this._swapView(view);
+  },
+
+  _swapView: function(view) {
+    this._currentView && this._currentView.remove();
+    this._currentView = view;
+    this.$rootEl.html(view.render().$el);
   }
 });

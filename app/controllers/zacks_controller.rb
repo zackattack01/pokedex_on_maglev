@@ -3,10 +3,16 @@ require_relative '../../lib/controller_base'
 
 class ZacksController < ControllerBase
   def root
-    render('home')
+    render('root')
   end
 
-  def projects
-    render('projects')
+  def tab
+    if params[:tab_name] == "Projects"
+      render('projects')
+    elsif params[:tab_name] == "Home"
+      render('home')
+    else
+      raise "unmatched params"
+    end
   end
 end

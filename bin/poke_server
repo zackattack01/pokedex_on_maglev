@@ -9,18 +9,16 @@ require_relative '../app/controllers/stylesheets_controller'
 require_relative '../app/controllers/scripts_controller'
 require_relative '../app/controllers/images_controller'
 require_relative '../app/controllers/zacks_controller'
-# require_relative '../app/controllers/partials_controller'
 
 router = Router.new
 router.draw do
   get Regexp.new("^/$"), ZacksController, :root
-  # get Regexp.new("^/(?<filename>[\\w\-_\.]+).html$"), PartialsController, :root
-  get Regexp.new("^/projects$"), ZacksController, :projects
+  get Regexp.new("^/my(?<tab_name>[-\\w_\.]+)$"), ZacksController, :tab
   get Regexp.new("^/pokemon$"), PokemonsController, :index
   get Regexp.new("^/pokemon/(?<id>\\d+)$"), PokemonsController, :show
-  get Regexp.new("^/(?<filename>[\\w\-_\.]+).css$"), StyleSheetsController, :style
+  get Regexp.new("^/(?<filename>[-\\w_\.]+).css$"), StyleSheetsController, :style
   get Regexp.new("^/(?<image_name>\\w+)\.(?<img_ext>\\jpeg$|png$|jpg$)"), ImagesController, :render_image
-  get Regexp.new("^/(?<scriptname>[\\w\-_\.]+).js$"), ScriptsController, :script
+  get Regexp.new("^/(?<scriptname>[-\\w_\.]+).js$"), ScriptsController, :script
   get Regexp.new("^/types/(?<id>\\d+)$"), TypesController, :show
   get Regexp.new("^/moves/(?<id>\\d+)$"), MovesController, :show
 end
