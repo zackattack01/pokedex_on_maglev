@@ -5,11 +5,17 @@ Zack.Routers.Router = Backbone.Router.extend({
 
   routes: {
     '': 'root',
-    'projects': 'projectsTab'
+    'projects': 'projectsTab',
+    'about': 'aboutTab'
   },
 
   root: function() {
     var view = new Zack.Views.HomeView()
+    this._swapView(view);
+  },
+
+  aboutTab: function() {
+    var view = new Zack.Views.AboutView()
     this._swapView(view);
   },
 

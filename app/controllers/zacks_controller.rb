@@ -11,6 +11,8 @@ class ZacksController < ControllerBase
       render('projects')
     elsif params[:tab_name] == "Home"
       render('home')
+    elsif params[:tab_name] == "About"
+      render('about')
     else
       raise "unmatched params"
     end
