@@ -1,12 +1,6 @@
-Zack.Views.Root = Backbone.View.Extend({
-  template: JST['root'],
-
-  initialize: function() {
-
-  },
-
+Zack.Views.RootView = Backbone.View.extend({
   render: function() {
-    var content = this.template()
+    // var content = require(['root']);
     this.$el.html(content);
     return this;
   }

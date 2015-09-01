@@ -9,10 +9,12 @@ require_relative '../app/controllers/stylesheets_controller'
 require_relative '../app/controllers/scripts_controller'
 require_relative '../app/controllers/images_controller'
 require_relative '../app/controllers/zacks_controller'
+# require_relative '../app/controllers/partials_controller'
 
 router = Router.new
 router.draw do
   get Regexp.new("^/$"), ZacksController, :root
+  # get Regexp.new("^/(?<filename>[\\w\-_\.]+).html$"), PartialsController, :root
   get Regexp.new("^/projects$"), ZacksController, :projects
   get Regexp.new("^/pokemon$"), PokemonsController, :index
   get Regexp.new("^/pokemon/(?<id>\\d+)$"), PokemonsController, :show

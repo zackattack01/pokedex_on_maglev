@@ -8,7 +8,7 @@ Zack.Routers.Router = Backbone.Router.extend({
   },
 
   root: function() {
-    var rootView = new Zack.Views.Root()
+    var rootView = new Zack.Views.RootView()
     this.$rootEl.html(this.rootView.render().$el);
   }
 });

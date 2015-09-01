@@ -3,7 +3,7 @@ require_relative '../../lib/controller_base'
 
 class ZacksController < ControllerBase
   def root
-    render('show')
+    render('home')
   end
 
   def projects
