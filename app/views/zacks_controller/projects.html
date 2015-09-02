@@ -2,39 +2,62 @@
     <div class="container">
 		<div class="row">
 			<div class="col-lg-6 col-lg-offset-3">
-				<h4>NEW WEBSITE FOR</h4>
-				<h1>INSTANT</h1>
-				<h4>ROLE: LEAD DESIGNER</h4>
+				<h1>POKEDEX</h1>
+				<h4>SANS RAILS</h4>
 			</div>
 		</div><! --/row -->
     </div> <!-- /container -->
 </div><! --/workwrap -->
 
-<section id="works"></section>
 <div class="container">
 	<div class="row centered mt mb">
 		<div class="col-lg-8 col-lg-offset-2">
-			<h4>ABOUT THE PROJECT</h4>
-			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-		</div>
-		<div class="col-lg-10 col-lg-offset-1 mt">
-			<img class="img-responsive" src="assets/img/pr01.jpg">
-			<br>
-			<img class="img-responsive" src="assets/img/pr02.jpg">
-		</div>
+  			<p>
+          I'm currently working on building a lightweight framework (modeled after rails and active record) to better understand 
+          and appreciate their inner workings.  So far I've implemented macros for defining all of the basic relationships (has_many, belongs_to, has_many through, etc.)
+          as well as base model and controller classes to provide utility methods for interacting with SQL.</p>
+        <p>  
+          The next step was to create asset controllers with custom routes
+          to recognize and respond to requests for images (.png, .jpeg, .jpg) as well as scripts and stylesheets.  The framework can now be (and has been) fully integrated with jQuery, 
+          Bootstrap, and Backbone.  The website you're viewing right now is built on that framework, and you've actually been sitting on a gold mine of poke data this entire time.
+        </p>
+        <a class="poke-link" href="/pokemon"><h4>CHECK IT OUT</h4></a>
+
+  		</div>
+  		<div class="col-lg-10 col-lg-offset-1 mt breedly">
+  			<a href="http://breedly.co"><img class="img-responsive img-center" src="breedly_logo.jpg"></a>
+        <p>
+          Another recent project of mine is breedly, an rss feed reading app inspired by feedly. Breedly tailors to users that have a personal
+          blog or feed that they want to share.  You don't need one to sign up, but once you do you can add public or personal feeds to the database and manage your feed subscriptions.
+          Adding interests to your profile will suggest other feeds that you might be interested in, and you can search for feeds by title or topic.
+        </p>
+        <p> 
+          Breedly dynamically associates feeds with categories from their latest entries and escapes html intelligently to maintain the integrity of responses from whitelisted sources.  
+          This allows full support for embedded YouTube and mp4 videos as well as media from Instagram, iTunes, and Tumblr.  Click the logo above to check it out live.
+        </p>
+  		<br>
+    </div>
+    <div class="col-lg-10 col-lg-offset-1 mt breedly">
+        <a href="http://zackattack01.github.io/snake"><img class="img-responsive img-center" src="snake_logo.jpg"></a>
+        <p>
+          Snake is a fast-paced javascript game I created based on Atari’s Snake.
+        </p>
+        <p>
+          It uses CSS repeating and radial gradients to produce a snake scale texture and give depth to the targets.
+          The view constructor integrates modal presentations with Javascript’s async interval methods to allow smooth pausing
+          and game restart.  Click the logo above to try it out.
+        </p>
+      <br>
+    </div>
 
 	</div><! --/row -->
 </div><! --/container -->
 
-<div id="social">
-	<div class="container">
-		<div class="row centered">
-			<div class="col-lg-2">
-				<a href="#"><i class="fa fa-linkedin"></i></a>
-			</div>
-      <div class="col-lg-2">
-        <a href="#"><i class="fa fa-github"></i></a>
-      </div>
-		</div><! --/row -->
-	</div><! --/container -->
-</div><! --/social -->
+<script>
+$(function() {
+  $('.poke-link').one('click', function(e) {
+    e.preventDefault();
+    $('#dynamic-content').animate({opacity: "0"}, 1000);
+  });
+});
+</script>
