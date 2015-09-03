@@ -1,14 +1,13 @@
 body {
   background-color: black;
   color: white;
-  font-family: 'Monaco' monospace;
+  /*font-family: 'Monaco' monospace;*/
 }
 
 .title {
   background-color: #4C0606;
   box-shadow: 0 2px 2px #A11111;
   text-shadow: 0 0 3px red;
-  color: black;
   margin: 0;
   border: none;
   position: fixed;
@@ -18,9 +17,15 @@ body {
   z-index: 10;
 }
 
-.poke-list-item a {
-  text-shadow: -2px -1px 10px red;
-  color: #ECEBEB ;
+.poke-list-item {
+  background: radial-gradient(at bottom, white, black);
+  text-align: center;
+  padding: 20px;
+}
+
+.poke-list-item a h4 {
+  text-shadow: -2px -1px 10px #EBEBEB;
+  color: black;
 }
 
 a {
@@ -67,8 +72,7 @@ h1, h2, h3 {
 .poke-list-item { display: inline-block;}
 
 .poke-show {
-  margin-left: 50%;
-  margin-top: 100px;
+  margin: 100px 0 100px 50%;
 }
 
 .poke-show img {
@@ -81,9 +85,10 @@ h3.ui-accordion-header {
 }
 
 h3.ui-accordion-header:not(.ui-accordion-header-active) {
-  margin: -2px 0 0 0;
+  padding: 10px 0 10px 0;
   box-shadow: 0 0 10px #EBEBEB;
   font-size: 1.3em;
+  color: #EBEBEB;
 }
 
 .ui-accordion-header:hover {
@@ -143,5 +148,5 @@ img.poke-img {
 .back-link {
   position: fixed;
   left: 10px;
-  bottom: 10px;
+  top: 80px;
 }

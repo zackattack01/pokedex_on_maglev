@@ -21,11 +21,11 @@
           to recognize and respond to requests for images (.png, .jpeg, .jpg) as well as scripts and stylesheets.  The framework can now be (and has been) fully integrated with jQuery, 
           Bootstrap, and Backbone.  The website you're viewing right now is built on that framework, and you've actually been sitting on a gold mine of poke data this entire time.
         </p>
-        <a class="poke-link" href="/pokemon"><h4>CHECK IT OUT</h4></a>
+        <a class="poke-link" href="#"><h4>CHECK IT OUT</h4></a>
 
   		</div>
   		<div class="col-lg-10 col-lg-offset-1 mt breedly">
-  			<a href="http://breedly.co"><img class="img-responsive img-center" src="breedly_logo.jpg"></a>
+  			<a target="_blank" href="http://breedly.co"><img class="img-responsive img-center" src="breedly_logo.jpg"></a>
         <p>
           Another recent project of mine is breedly, an rss feed reading app inspired by feedly. Breedly tailors to users that have a personal
           blog or feed that they want to share.  You don't need one to sign up, but once you do you can add public or personal feeds to the database and manage your feed subscriptions.
@@ -38,7 +38,7 @@
   		<br>
     </div>
     <div class="col-lg-10 col-lg-offset-1 mt breedly">
-        <a href="http://zackattack01.github.io/snake"><img class="img-responsive img-center" src="snake_logo.jpg"></a>
+        <a target="_blank" href="http://zackattack01.github.io/snake"><img class="img-responsive img-center" src="snake_logo.jpg"></a>
         <p>
           Snake is a fast-paced javascript game I created based on Atari’s Snake.
         </p>
@@ -57,7 +57,9 @@
 $(function() {
   $('.poke-link').one('click', function(e) {
     e.preventDefault();
-    $('#dynamic-content').animate({opacity: "0"}, 1000);
+    $('#dynamic-content').animate({opacity: "0"}, 1000, function() {
+      Backbone.history.navigate('/pokemon', { trigger: true });
+    });
   });
 });
 </script>

@@ -7,7 +7,8 @@ Zack.Routers.Router = Backbone.Router.extend({
     '': 'root',
     'projects': 'projectsTab',
     'about': 'aboutTab',
-    'pokemon': 'pokemonIndex'
+    'pokemon': 'pokemonIndex',
+    'pokemon/:id': 'pokeShow'
   },
 
   root: function() {
@@ -32,7 +33,15 @@ Zack.Routers.Router = Backbone.Router.extend({
   },
 
   pokemonIndex: function() {
-    
+    var view = new Zack.Views.PokeIndexView();
+    this.$rootEl.css('opacity', '1');
+    this._swapView(view);
+  },
+
+  pokeShow: function(id) {
+    var pokeModel = new Zack.Models.Pokemon({ id: id });
+    var view = new Zack.Views.PokeShowView({ model: pokeModel });
+    this._swapView(view);
   },
 
   _swapView: function(view) {

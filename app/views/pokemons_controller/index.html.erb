@@ -1,13 +1,14 @@
 <div class="title">
-  <h1>POKEDEX</h1>
+  <h1 style="color:white">POKEDEX</h1>
 </div>
 <div class="poke-list">
   <% @pokemons.each do |poke| %>
     <div class="poke-list-item">
-      <a href="/pokemon/<%= poke.id %>">
+      <a href="/#pokemon/<%= poke.id %>">
         <img alt="<%= poke.name %>-image" src="data:image/png;base64,<%= poke.encoded_img %>"/>
-        <h3><%= poke.name %></h3>
+        <h4><%= poke.name %></h4>
       </a>
     </div>
   <% end %>
 </div>
+
