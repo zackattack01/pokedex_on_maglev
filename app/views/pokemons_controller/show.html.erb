@@ -9,7 +9,7 @@
       <ul>
         <li class="instructions"><small>CLICK ANY TO VIEW OTHER POKES BY TYPE</small></li>
         <% @pokemon.types.each do |type| %>
-          <li><a href="/types/<%= type.id %>"><%= type.name.upcase %></a></li>
+          <li><a href="/#types/<%= type.id %>"><%= type.name.upcase %></a></li>
         <% end %>
       </ul>
 
@@ -17,7 +17,7 @@
       <ul>
         <li class="instructions"><small>CLICK ANY TO SEE MOVE INFO</small></li>
         <% @pokemon.moves.each do |move| %>
-          <li><a href="/moves/<%= move.id %>"><%= move.name.upcase %></a></li>
+          <li><a href="/#moves/<%= move.id %>"><%= move.name.upcase %></a></li>
         <% end %>
       </ul> 
 
@@ -29,7 +29,7 @@
       </ul> 
   </div>
 </div>
-<a class="back-link" href="/pokemon">&lt;&lt; BACK TO FULL POKEDEX</a>
+<a class="back-link" href="/#pokemon">&lt;&lt; BACK TO FULL POKEDEX</a>
 <script>
 $(function() {
   $('.poke-stats').accordion({

@@ -114,6 +114,16 @@ a.poke-link h4:hover, a.navbar-brand:hover, .navbar-default .navbar-nav > li > a
   text-shadow: 0 0 5px black;
 }
 
+.dark-nav a {
+  color: black !important;
+  text-shadow: 0 0 5px #EBEBEB !important;
+  border-bottom-color: black !important;
+}
+
+.dark-nav a:hover {
+  text-shadow: 0 0 5px black !important;
+}
+
 a:hover { text-decoration: none; }
 
 /* ==========================================================================

@@ -6,7 +6,7 @@
     <div class="poke-list-item">
       <a href="/#pokemon/<%= poke.id %>">
         <img alt="<%= poke.name %>-image" src="data:image/png;base64,<%= poke.encoded_img %>"/>
-        <h4><%= poke.name %></h4>
+        <h4><%= poke.name.upcase %></h4>
       </a>
     </div>
   <% end %>

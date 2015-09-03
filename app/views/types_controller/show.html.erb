@@ -1,14 +1,15 @@
 <div class="title">
-  <h1><%= @type.name.upcase %></h1>
+  <h1 style="color:white"><%= @type.name.upcase %></h1>
 </div>
 <div class="data-index center">
   <div class="header-label">
-    <h3>OTHER <%= @type.name.upcase %> POKES</h3>
+    <h3><%= @type.name.upcase %> POKEMON</h3>
   </div>
       <ul>
         <% @type.pokemon.each do |poke| %>
-          <li style="padding:15px 0 15px 0"><a href="/pokemon/<%= poke.id %>"><%= poke.name.upcase %></a></li>
+          <li style="padding:15px 0 15px 0"><a href="/#pokemon/<%= poke.id %>"><%= poke.name.upcase %></a></li>
         <% end %>
       </ul>
   </div>
 </div>
+<a class="back-link" href="/#pokemon">&lt;&lt; BACK TO FULL POKEDEX</a>
