@@ -47,6 +47,9 @@
 .img-center {
   margin-left: 50%;
   transform: translate(-50%);
+  -webkit-transform: translate(-50%);
+  -moz-transform: translate)(-50%);
+  -o-transform: translate)(-50%);
 }
 
 .mt {
