@@ -18,14 +18,16 @@ body {
 }
 
 .poke-list-item {
-  background: radial-gradient(at bottom, white, black);
+  background: none;
+  width: 200px;
+  height: 200px;
   text-align: center;
   padding: 20px;
 }
 
 .poke-list-item a h4 {
-  text-shadow: -2px -1px 10px #EBEBEB;
-  color: black;
+  text-shadow: -2px -1px 10px red;
+  color: #EBEBEB;
 }
 
 a {
@@ -68,9 +70,14 @@ h1, h2, h3 {
   z-index: -1;
 }
 
-.poke-list { margin: 120px 40px 100px 40px;}
+.poke-list { margin: 120px 100px 100px 100px;}
 
-.poke-list-item { display: inline-block;}
+.poke-list:after {
+  display: block;
+  content: "";
+  clear:both;
+}
+.poke-list-item { float:left;}
 
 .poke-show {
   margin: 100px 0 100px 50%;
@@ -79,6 +86,9 @@ h1, h2, h3 {
 .poke-show img {
   width: 400px;
   margin-left: 50%;
+  background: none;
+  background: radial-gradient(at bottom, white, black);
+  border-radius: 50px 50px 0 0;
 }
 
 h3.ui-accordion-header {
