@@ -7,11 +7,6 @@ class PokemonsController < ControllerBase
     render('root')
   end
 
-  def index
-    @pokemons = Pokemon.all
-    render('index')
-  end
-
   def show
     @pokemon = Pokemon.find(params[:id].to_i)
     render('show')

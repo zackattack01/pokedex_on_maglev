@@ -12,7 +12,6 @@ require_relative '../app/controllers/images_controller'
 router = Router.new
 router.draw do
   get Regexp.new("^/$"), PokemonsController, :root
-  get Regexp.new("^/pokemon$"), PokemonsController, :index
   get Regexp.new("^/pokemon/(?<id>\\d+)$"), PokemonsController, :show
   get Regexp.new("^/(?<filename>[-\\w_\.]+).css$"), StyleSheetsController, :style
   get Regexp.new("^/(?<image_name>\\w+)\.(?<img_ext>\\jpeg$|png$|jpg$|ico$)"), ImagesController, :render_image
