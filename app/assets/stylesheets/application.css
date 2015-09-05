@@ -173,3 +173,10 @@ img.poke-img {
   text-shadow: 0 0 3px red;
   z-index: 10;
 }
+
+.gh-link-container {
+  position: fixed;
+  bottom: 0;
+  left: 90%;
+  padding: 10px;
+}
