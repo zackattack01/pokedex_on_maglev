@@ -3,6 +3,7 @@ require_relative '../models/pokemon'
 
 class PokemonsController < ControllerBase
   def root
+    @pokemons = Pokemon.all
     render('root')
   end
 

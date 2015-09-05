@@ -8,6 +8,20 @@
   </head>
 
   <body>
+    <div class="title">
+      <h1 style="color:white">POKEDEX</h1>
+    </div>
+    <div class="poke-list">
+      <% @pokemons.each do |poke| %>
+        <div class="poke-list-item">
+          <a class="poke-list-link" href="/pokemon/<%= poke.id %>">
+            <img alt="<%= poke.name %>-image" src="data:image/png;base64,<%= poke.encoded_img %>"/>
+            <h4><%= poke.name.upcase %></h4>
+          </a>
+        </div>
+      <% end %>
+    </div>
+
     <div id="dynamic-content"></div>
     <div class="footer">
         <div class="back-link-container"></div>
@@ -33,6 +47,16 @@
     <script>
       $(document).ready(function(){
         Pokedex.initialize();
+        $('.poke-list-link').one('click', function(e) {
+            e.preventDefault();
+            var pokeShowUrl = $(this).attr("href")
+          $('.poke-list').animate({
+              opacity: 0
+           }, 1500, function() {
+              $('.poke-list').css("display", "none");
+              Backbone.history.navigate(pokeShowUrl, { trigger: true });
+           });
+        });
       });
     </script>   
   </body>

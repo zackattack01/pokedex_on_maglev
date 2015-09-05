@@ -4,21 +4,16 @@ Pokedex.Routers.Router = Backbone.Router.extend({
   },
 
   routes: {
-    '': 'root',
     'pokemon': 'pokemonIndex',
     'pokemon/:id': 'pokeShow',
     'types/:id': 'typeShow',
     'moves/:id': 'moveShow'
   },
 
-  root: function() {
-    var view = new Pokedex.Views.PokeIndexView();
-    this._swapView(view);
-  },
-
   pokemonIndex: function() {
-    var view = new Pokedex.Views.PokeIndexView();
-    this._swapView(view);
+    $('.poke-list').css("display", "block");
+    $('.poke-list').animate({ opacity: 1 }, 1000);
+    this.killCurrentView();
   },
 
   pokeShow: function(id) {
@@ -37,6 +32,10 @@ Pokedex.Routers.Router = Backbone.Router.extend({
     var moveModel = new Pokedex.Models.Move({ id: id });
     var view = new Pokedex.Views.MoveView({ model: moveModel });
     this._swapView(view);
+  },
+
+  killCurrentView: function() {
+    this._currentView && this._currentView.remove();
   },
 
   _swapView: function(view) {
