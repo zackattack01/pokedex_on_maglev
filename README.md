@@ -25,10 +25,9 @@ while keeping views DRY
 
 #### Asset image, script, and stylesheet support
 - A controller for each type of asset and corresponding routes using regexps to support get requests from within your project directory.
-- Image routes will recognize and respond to .jpg, .jpeg, and .png files
+- Image routes will recognize and respond to .jpg, .jpeg, .ico, and .png files
 - ScriptsController recognizes .js files in the src of script tags and runs the appropriate files
 - StyleSheetsController does the same for linked stylesheets
 
 ### Plans for the Near Future
 - Incorporate an includes method for SQLObject to get rid of the only thing worse than team rocket
-- Either provide full support for rendering partials or integrate Backbone

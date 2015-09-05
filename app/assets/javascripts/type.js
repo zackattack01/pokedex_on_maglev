@@ -1,3 +1,3 @@
-Zack.Models.Type = Backbone.Model.extend({
+Pokedex.Models.Type = Backbone.Model.extend({
   urlRoot: '/types'
 });

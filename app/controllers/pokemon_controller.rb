@@ -3,7 +3,7 @@ require_relative '../models/pokemon'
 
 class PokemonsController < ControllerBase
   def root
-    redirect_to('/pokemon')
+    render('root')
   end
 
   def index

@@ -1,3 +1,3 @@
-Zack.Models.Move = Backbone.Model.extend({
+Pokedex.Models.Move = Backbone.Model.extend({
   urlRoot: '/moves'
 });

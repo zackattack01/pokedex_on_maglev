@@ -38,7 +38,7 @@ class ControllerBase
   end
 
   def render(template_name)
-    if self.class.to_s =~ /Zack/
+    if self.class.to_s =~ /Pokedex/
       path = "app/views/#{self.class.to_s.underscore}/#{template_name}.html"
       content = File.read(path)
     else

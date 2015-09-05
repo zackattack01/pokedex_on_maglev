@@ -1,4 +1,4 @@
-Zack.Views.MoveView = Backbone.View.extend({
+Pokedex.Views.MoveView = Backbone.View.extend({
   render: function() {
     var that = this;
     this.model.fetch({

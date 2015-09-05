@@ -1,4 +1,4 @@
-Zack.Views.TypeView = Backbone.View.extend({
+Pokedex.Views.TypeView = Backbone.View.extend({
   render: function() {
     var that = this;
     this.model.fetch({

@@ -1,7 +1,7 @@
 body {
   background-color: black;
   color: white;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Monaco', sans-serif;
 }
 
 .title {
@@ -87,7 +87,6 @@ h1, h2, h3 {
   width: 400px;
   margin-left: 50%;
   background: none;
-  background: radial-gradient(at bottom, white, black);
   border-radius: 50px 50px 0 0;
 }
 
@@ -158,7 +157,19 @@ img.poke-img {
 }
 
 .back-link {
+  color: white;
+  padding: 10px;
+
+}
+
+.footer {
   position: fixed;
-  left: 10px;
-  top: 80px;
+  bottom: 0;
+  left: 0;
+  height: 50px;
+  width: 100%;
+  background-color: #4C0606;
+  box-shadow: 0 -2px 2px #A11111;
+  text-shadow: 0 0 3px red;
+  z-index: 10;
 }
