@@ -1,7 +1,7 @@
 ## Pokedex on MagLev
 A Responsive Pokedex built using only Webrick and ActiveSupport
 
-Check it out live [here](https://pokedex-sans-rails.herokuapp.com/pokemon)
+Check it out live [here](https://pokedex-sans-rails.herokuapp.com)
 
 ### Features of MagLev
 
