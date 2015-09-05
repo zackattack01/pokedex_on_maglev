@@ -12,7 +12,6 @@ class ControllerBase
   def initialize(req, res, route_params = {})
     @req, @res = req, res
     @params = Params.new(req, route_params)
-    #@header = ERB.new(File.read("app/views/_app_header.html.erb")).result(binding)
   end
 
   def already_built_response?
@@ -38,14 +37,8 @@ class ControllerBase
   end
 
   def render(template_name)
-    if self.class.to_s =~ /Pokedex/
-      path = "app/views/#{self.class.to_s.underscore}/#{template_name}.html"
-      content = File.read(path)
-    else
-      path = "app/views/#{self.class.to_s.underscore}/#{template_name}.html.erb"
-      content = "<link rel='stylesheet' type='text/css' href='/application.css'>" +
-                  ERB.new(File.read(path)).result(binding) 
-    end
+    path = "app/views/#{self.class.to_s.underscore}/#{template_name}.html.erb"
+    content = ERB.new(File.read(path)).result(binding) 
     render_content(content, "text/html")
     flash.store_flash(res)
   end
