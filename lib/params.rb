@@ -2,7 +2,6 @@ require 'uri'
 
 class Params
   def initialize(req, route_params = {})
-
     ## set the params to a new hash with a default proc that initializes 
     ## a deeper hash with the parent default proc.  this allows the params 
     ## to be nested arbitrarily deep in parse_www_encoded_form
