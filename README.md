@@ -1,10 +1,11 @@
 ## Pokedex on MagLev
 A Responsive Pokedex built using only Webrick and ActiveSupport
-![poke-index](./pokeIndex.png)
 
-![pika-show](./pikaShow.png)
+![poke-index](./readme_images/pokeIndex.png)
 
-Check it out live [here](https://pokedex-sans-rails.herokuapp.com)
+![pika-show](./readme_images/pikaShow.png)
+
+#### Check it out live [here](https://pokedex-sans-rails.herokuapp.com)
 
 ### Features of MagLev
 
@@ -24,7 +25,7 @@ while keeping views DRY
 - Integration of the BaseController and SQLObject classes allow
 
 #### A gemfile that is loved by all
-![gemfile](./gemfile.png)
+![gemfile](./readme_images/gemfile.png)
 
 #### Asset image, script, and stylesheet support
 - A controller for each type of asset and corresponding routes using regexps to support get requests from within your project directory.
