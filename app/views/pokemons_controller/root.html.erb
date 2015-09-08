@@ -14,7 +14,7 @@
     <div class="poke-list">
       <% @pokemons.each do |poke| %>
         <div class="poke-list-item">
-          <a class="poke-list-link" href="/pokemon/<%= poke.id %>">
+          <a class="poke-list-link" data-id="<%= poke.id %>" href="">
             <img alt="<%= poke.name %>-image" src="data:image/png;base64,<%= poke.encoded_img %>"/>
             <h4><%= poke.name.upcase %></h4>
           </a>
@@ -49,12 +49,12 @@
         Pokedex.initialize();
         $('.poke-list-link').one('click', function(e) {
             e.preventDefault();
-            var pokeShowUrl = $(this).attr("href")
+            var pokeId = $(this).data("id");
           $('.poke-list').animate({
               opacity: 0
            }, 1500, function() {
               $('.poke-list').css("display", "none");
-              Backbone.history.navigate(pokeShowUrl, { trigger: true });
+              Backbone.history.navigate('/pokemon/' + pokeId, { trigger: true });
            });
         });
       });

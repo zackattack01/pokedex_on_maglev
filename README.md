@@ -1,5 +1,8 @@
 ## Pokedex on MagLev
 A Responsive Pokedex built using only Webrick and ActiveSupport
+![poke-index](./pokeIndex.png)
+
+![pika-show](./pikaShow.png)
 
 Check it out live [here](https://pokedex-sans-rails.herokuapp.com)
 
